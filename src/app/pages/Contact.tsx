@@ -21,22 +21,20 @@ export function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  const form = e.target as HTMLFormElement;
-  fetch("/", {
+  const response = await fetch("https://formspree.io/f/xqeyrpoo", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(new FormData(form) as any).toString(),
-  })
-    .then(() => {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({ name: "", email: "", company: "", phone: "", subject: "", message: "" });
-      }, 3000);
-    })
-    .catch((error) => console.error(error));
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+  if (response.ok) {
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", company: "", phone: "", subject: "", message: "" });
+    }, 3000);
+  }
 };
   const contactInfo = [
     {
