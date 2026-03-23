@@ -9,6 +9,18 @@
   </head>
   <body>
 
+    <!-- Netlify Forms hidden form -->
+    <form name="contact" netlify data-netlify="true" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="tel" name="phone" />
+      <select name="subject">
+        <option value="audit">audit</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <form name="contact" netlify data-netlify="true" hidden>
@@ -19,5 +31,6 @@
       <select name="subject"></select>
       <textarea name="message"></textarea>
     </form>
+    
   </body>
 </html>
