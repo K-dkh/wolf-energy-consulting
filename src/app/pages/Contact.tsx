@@ -22,22 +22,22 @@ export function Contact() {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // Here you would normally send the form data to your backend
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-    }, 3000);
-  };
-
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(new FormData(form) as any).toString(),
+  })
+    .then(() => {
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: "", email: "", company: "", phone: "", subject: "", message: "" });
+      }, 3000);
+    })
+    .catch((error) => console.error(error));
+};
   const contactInfo = [
     {
       icon: Mail,
@@ -101,7 +101,14 @@ export function Contact() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+               onSubmit={handleSubmit}
+               name="contact"
+               method="POST"
+               data-netlify="true"
+               className="space-y-6">
+              <input type="hidden" name="form-name" value="contact" />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">

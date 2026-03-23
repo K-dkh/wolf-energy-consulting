@@ -6,7 +6,7 @@ Site vitrine pour Wolf Energy Consulting, entreprise de conseil en énergie spé
 
 
 
-**Technologies**
+**Technologies utilisees**
 
 
 
@@ -24,17 +24,7 @@ Site vitrine pour Wolf Energy Consulting, entreprise de conseil en énergie spé
 
 **Déploiement**
 
-
-
-Le site peut être déployé sur n'importe quelle plateforme supportant les sites statiques :
-
-\- Netlify
-
-\- Vercel
-
-\- GitHub Pages
-
-\- Etc.
+Netlify
 
 
 
